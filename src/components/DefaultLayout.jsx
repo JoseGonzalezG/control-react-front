@@ -3,7 +3,8 @@ import { useStateContext } from "../contexts/contextprovider";
 import axios from "axios";
 import { useEffect } from "react";
 import { useContext } from "react";
-import axiosClient from "../axiosClient";
+import axiosClient from "../api/axiosClient";
+import Nav from "./Navbar";
 
 
 export default function DefaultLayout(){
@@ -29,22 +30,29 @@ export default function DefaultLayout(){
       }, [])
 
     return(
-        <div id="DefaultLayout">
-            <div className="content">
-                <header>
-                    <div>
-                        Header
-                    </div>
-                    <div>
-                        {user.name}
-                        <a href="#" onClick={onLogout} className="btn-logout"> Logout</a>
-                    </div>
-                </header>
-                <main>
-                    <Outlet />
-                </main>
-            </div>
+        <div>
             
+            <div id="DefaultLayout">
+
+        
+
+                <div className="content">
+                    <header>
+                        <div>
+                            Header
+                        </div>
+                        <div>
+                            {user.name}
+                            <a href="#" onClick={onLogout} className="btn-logout"> Logout</a>
+                        </div>
+                    </header>
+                    <main>
+                        <Outlet />
+                    </main>
+                </div>
+            
+            </div>
         </div>
+        
     )
 }
