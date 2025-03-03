@@ -10,10 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "axios": "^1.7.9",
+    "bootstrap": "^5.3.3",
+    "control-react-front": "file:",
+    "datatables.net-dt": "^2.2.2",
+    "datatables.net-react": "^1.0.0",
     "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-bootstrap-pagination-control": "^1.0.5",
+    "react-data-table-component": "^7.7.0",
     "react-dom": "^19.0.0",
-    "react-router-dom": "^7.2.0"
+    "react-router-dom": "^7.2.0",
+    "sweetalert2": "^11.17.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

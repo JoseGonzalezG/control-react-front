@@ -1,23 +1,25 @@
 import axios from "axios";
-import { useRef } from "react";
+import { useRef, useState } from 'react';
 import { Link } from "react-router-dom";
-import axiosClient from "../axiosClient";
+import axiosClient from "../api/axiosClient";
 import { useStateContext } from "../contexts/contextprovider";
+
+import DivInput from '../components/DivInput';
 
 export default function register(){
 
-    const nameRef = useRef();
-    const emailRef = useRef();
-    const passwordRef = useRef();
-
     const {setUser, setToken} = useStateContext();
+    
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const Submit =  (ev) =>{
         ev.preventDefault();
         const payload = {
-            name: nameRef.current.value,
-            email: emailRef.current.value,
-            password: passwordRef.current.value,
+            name,
+            email,
+            password,
         }
         axiosClient.post("/register",payload).then(({data})=>{
             setUser(data.user);
@@ -31,21 +33,39 @@ export default function register(){
 }
 
     return(
-        <div className="login-signup-form animated fadeinDown">
-            <div className="form">
-                <h1 className="title">
-                    Create A New Account
-                </h1>
-                <form onSubmit={Submit}>
-                    <input ref={nameRef} type="name" placeholder="Name" />
-                    <input ref={emailRef} type="email" placeholder="Email" />
-                    <input ref={passwordRef} type="password" placeholder="Password" />
-                    <button className="btn btn-block">Register</button>
-                    <p className="message">
-                        Already Have An Account? <Link to= '/login'>Login</Link>
-                    </p>
-                </form>
-            </div>
-        </div>
+
+        <div className='container-fluid'>
+                    <div className='row mt-5'>
+                        <div className='col-md-4 offset-md-4'>
+                            <div className='card border border-dark'>
+                                <div className='card-header bg-dark border border-dark text-white'>
+                                    Registro de usuario
+                                </div>
+                                <div className='card-body'>
+                                    <form onSubmit={Submit}>
+                                        <DivInput type='text' icon='fa-user' value={name}
+                                        className='form-control' placeholder='Name' required='required'
+                                        handleChange={(e) => setName(e.target.value)}/>
+
+                                        <DivInput type='email' icon='fa-at' value={email}
+                                        className='form-control' placeholder='Email' required='required'
+                                        handleChange={(e) => setEmail(e.target.value)}/>
+        
+                                        <DivInput type='password' icon='fa-key' value={password}
+                                        className='form-control' placeholder='Password' required='required'
+                                        handleChange={(e) => setPassword(e.target.value)}/>
+
+                                        <div className='d-grid col-10 mx-auto'>                                   
+                                            <button className='btn btn-success'>
+                                                <i className='fa-solid fa-door-opem'></i> Registrar
+                                            </button>        
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
     )
 }

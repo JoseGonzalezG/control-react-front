@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.my-custom-table {
+  background-color: #f0f0f0; /* Customize with your desired background color */
+}
+
+.dZZCFt {
+  display: flex;
+      width: 100%;
+      color: rgba(170, 8, 8, 0.87) !important;
+      font-size: 12px;
+      font-weight: 500;
+}
