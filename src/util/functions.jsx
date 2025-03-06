@@ -50,13 +50,13 @@ export function CallUsers () {
 }
 
 
-export const Logout = async() => {
-    const {user, token, setUser, setToken} = useStateContext();
+export const logout = async(id, name) => {
+    const {setUser, setToken} = useStateContext();
     axiosClient.get('/logout')
         .then(({}) => {
            setUser(null)
            setToken(null)
-        })
+        });
 }
 
 

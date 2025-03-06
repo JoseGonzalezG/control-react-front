@@ -1,15 +1,25 @@
 import logo from '/colegio-icon.png';
 import 'bootstrap/dist/css/bootstrap.css'
 import { Nav, Navbar, NavDropdown, Button } from 'react-bootstrap'
-import {Logout} from '../util/functions';
+import Swal from "sweetalert2"
+import { useStateContext } from "../contexts/contextprovider";
+import axiosClient from "../api/axiosClient";
 
 import '../NavBar.css'
 
-const Salir = () =>{
-  Logout();
+  
+export default function App(){
+  
+  const {setUser, setToken} = useStateContext();
+
+  const Submit =  () =>{
+    axiosClient.get('/logout')
+    .then(({}) => {
+       setUser(null)
+       setToken(null)
+    })
 }
 
-function App() {
   return (
     <div className="App">
       <Navbar className='navColor' variant="dark"
@@ -34,20 +44,13 @@ function App() {
             <Nav.Link href="#contact-us">Contact Us</Nav.Link>
           </Nav>
           
-          <Nav.Link href="#blog">
+          <Nav.Link href="#blog" > 
           <i className='fa fa-sign-out text-white'></i>
           </Nav.Link>
 
-          
+          <Button onClick={() => Submit()}>Reset</Button>
 
-
-          <a href="#" onClick={Salir} className="btn-logout"> 
-            <i className='fa fa-sign-out text-white'></i> Salir
-          </a>
-
-          <button className="btn btn-danger" onClick={ev => Salir()}>
-                      <i className='fa-solid fa-trash'></i>
-                    </button>
+                    
             
         
         </Navbar.Collapse>
@@ -59,5 +62,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
