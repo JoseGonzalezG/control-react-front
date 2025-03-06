@@ -1,0 +1,14 @@
+.cardColor {
+    background-color: #669BB7!important;
+}
+
+.fondoLogin{
+    background-image: url("https://colegiodenotariosedomex.org.mx/assets/img/bgd_header.jpg");
+    background-color: #Add8e6!important;
+    height: "100vh";
+    flex: 1;
+    justify-content: center;
+    background-size: 'cover';
+    background-repeat: 'no-repeat';
+    height: 90vh;
+}

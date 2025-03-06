@@ -4,7 +4,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Nav from './components/Navbar';
-import Login from './views/login';
+import Login from './views/login/login';
 import Register from './views/register';
 import Users from './views/users/users';
 

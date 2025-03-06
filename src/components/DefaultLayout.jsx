@@ -4,7 +4,7 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useContext } from "react";
 import axiosClient from "../api/axiosClient";
-import Nav from "./Navbar";
+import Nav from "./Navbar_users";
 
 
 export default function DefaultLayout(){
@@ -31,6 +31,8 @@ export default function DefaultLayout(){
 
     return(
         <div>
+
+            <Nav />
             
             <div id="DefaultLayout">
 
