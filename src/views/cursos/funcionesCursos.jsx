@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
-import axiosClient from "../api/axiosClient";
-import { useStateContext } from "../contexts/contextprovider";
+import axiosClient from "../../api/axiosClient";
+//import { useStateContext } from "../contexts/contextprovider";
 
 
 export const Alerta = (titulo, mensaje, icon) => {
@@ -11,7 +11,7 @@ export const Alerta = (titulo, mensaje, icon) => {
       });
 }
 
-export const AletaCarga = () => {
+export const AlertaCarga = () => {
     Swal.fire({
         title: "Cargando, por favor espere",
         timerProgressBar: true,
@@ -39,35 +39,22 @@ export const confirmation = async(id, name) => {
     });
 }
 
-export const EliminarRegistro = async(id) => {
-    axiosClient.delete(`/users/${id}`)
-}
 
-export const EliminarRegistroCurso = async(id) => {
-    axiosClient.delete(`/cursos/${id}`)
-}
-
-export function CallUsers () {
-    const peticion = axiosClient.get('/users');
-    const result = peticion.then((response) => response.data);
-    return result;
-}
-
-//Llamado de los cursos
+//llamado de cursos all
 export function CallCursos () {
     const peticion = axiosClient.get('/cursos');
     const result = peticion.then((response) => response.data);
     return result;
 }
 
+//llamado de cursos por paginacion
 export function CallCursosPage (page) {
     return axiosClient.get(`/cursos?page=${page}`)
     .then((response) => {
         console.log("TODOS LOS DATOS : " + response);
-        // Asegúrate de que el servidor te devuelva el total de filas y los datos
         const { data, total, per_page } = response.data; 
         console.log("Datos all:", total);
-        return { data, total, per_page }; // Retorna estos datos
+        return { data, total, per_page }; 
     })
     .catch(error => {
         console.error("Error al obtener los cursos", error);
@@ -76,17 +63,36 @@ export function CallCursosPage (page) {
 
 }
 
-
-export const logout = async(id, name) => {
-    const {setUser, setToken} = useStateContext();
-    axiosClient.get('/logout')
-        .then(({}) => {
-           setUser(null)
-           setToken(null)
-        });
+export const SaveCurso = async(payload) => {
+    try {
+        const response = await axiosClient.post('/cursos',payload);
+        const { success, message } = response.data; 
+        return { success, message }; 
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
 }
 
+/*Actualiza los registros*/ 
+export const UpdateCurso = async(id, clave_curso, nombre_curso, total_oferta) => {
+    try {
+      const payload = {
+        id,
+        clave_curso,
+        nombre_curso,
+        total_oferta
+      }
+        const response = await axiosClient.put(`/cursos/${id}`, payload);
+        const { success, message } = response.data; 
+        return { success, message }; 
+    } catch (error) {
+        console.error('Error al realizar la solicitud:', error);
+    }
+}
 
-
+/*Elimina registros de forma fisica de la base de datos*/
+export const EliminarRegistroCurso = async(id) => {
+    axiosClient.delete(`/cursos/${id}`)
+}
 
 export default confirmation;

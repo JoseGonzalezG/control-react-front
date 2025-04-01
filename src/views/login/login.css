@@ -5,10 +5,23 @@
 .fondoLogin{
     background-image: url("https://colegiodenotariosedomex.org.mx/assets/img/bgd_header.jpg");
     background-color: #Add8e6!important;
-    height: "100vh";
+    height: "100%";
     flex: 1;
     justify-content: center;
     background-size: 'cover';
     background-repeat: 'no-repeat';
-    height: 90vh;
+    height: 100vh;
 }
+
+.input-group-text {
+    width: 40px; /* Establece un ancho fijo para el contenedor del icono */
+    padding: 0; /* Elimina cualquier padding extra */
+    display: flex;
+    justify-content: center; /* Centra el icono horizontalmente */
+    align-items: center; /* Centra el icono verticalmente */
+  }
+  
+  .input-group-text i {
+    font-size: 18px; /* Define el tamaño del icono */
+    vertical-align: middle; /* Asegura que el icono esté alineado verticalmente */
+  }

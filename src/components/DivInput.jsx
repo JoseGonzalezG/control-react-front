@@ -8,6 +8,7 @@ export default forwardRef(({type='text', icon='user', placeholder='',
             input.current.focus();
         }
     }, []);
+    
     return (
         <div className='input-group mb-3'>
             <span className='input-group-text'>

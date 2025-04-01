@@ -2,7 +2,7 @@ import logo from '/colegio-icon.png';
 import 'bootstrap/dist/css/bootstrap.css'
 import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
 
-import '../NavBar.css'
+import '../../NavBar.css'
 
 function App() {
   return (
